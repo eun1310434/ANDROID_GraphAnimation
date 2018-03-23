@@ -110,7 +110,8 @@ public class MainActivity extends AppCompatActivity {
         String name = "Item-"+(++itemID);
         int value= (int) (Math.random()*100 + 1);
 
-        //Wrap Layout
+
+        /**Wrap Layout*/
         LinearLayout itemLayout = new LinearLayout(this);
         itemLayout.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -123,8 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-        // TextView
+        /**TextView*/
         TextView textView = new TextView(this);
         textView.setText(name);
         textView.setTextSize(20);
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        // ProgressBar
+        /**ProgressBar*/
         ProgressBar proBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
         proBar.setIndeterminate(false); //게이지가 올라가는 것이 작업이 완료될때까지 멈추지 않음
         proBar.setMax(100);
@@ -164,7 +164,8 @@ public class MainActivity extends AppCompatActivity {
         itemLayout.addView(proBar, proBarParams);//프로그래스바를 params2의 레이아웃에 맞춰서 itemLayout에 입력
 
 
-        //Add to MainLayout
+
+        /**MainLayout*/
         mainLayout.addView(itemLayout, itemParams);
     }
 
