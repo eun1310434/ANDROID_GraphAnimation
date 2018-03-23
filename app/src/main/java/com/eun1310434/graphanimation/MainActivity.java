@@ -110,48 +110,62 @@ public class MainActivity extends AppCompatActivity {
         String name = "Item-"+(++itemID);
         int value= (int) (Math.random()*100 + 1);
 
-
-        //XML이 아닌 소스코드로 추가
-        growAnim = AnimationUtils.loadAnimation(this, R.anim.grow);
-
+        //Wrap Layout
         LinearLayout itemLayout = new LinearLayout(this);
         itemLayout.setOrientation(LinearLayout.HORIZONTAL);
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+        //Wrap Layout - Layout Setting
+        LinearLayout.LayoutParams itemParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.width = 240;
-        params.setMargins(0, 4, 0, 4);
+        itemParams.gravity = Gravity.LEFT;
+        itemParams.setMargins(10, 0, 0, 0);
 
-        LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        params2.height = 80;
-        params2.width = value * 6;
-        params2.gravity = Gravity.LEFT;
 
-        LinearLayout.LayoutParams params3 = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        params3.gravity = Gravity.LEFT;
-        params3.setMargins(10, 0, 0, 0);
 
-        // 텍스트뷰 추가
+
+        // TextView
         TextView textView = new TextView(this);
         textView.setText(name);
         textView.setTextSize(20);
         textView.setTextColor(Color.WHITE);
-        itemLayout.addView(textView, params);//프로그래스바를 params의 레이아웃에 맞춰서 itemLayout에 입력
 
-        // 프로그레스바 추가
+        // TextView - Layout Setting
+        LinearLayout.LayoutParams textViewParam = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        textViewParam.width = 240;
+        textViewParam.setMargins(0, 4, 0, 4);
+
+        // ADD - TextView
+        itemLayout.addView(textView, textViewParam);//프로그래스바를 params의 레이아웃에 맞춰서 itemLayout에 입력
+
+
+
+
+        // ProgressBar
         ProgressBar proBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
         proBar.setIndeterminate(false); //게이지가 올라가는 것이 작업이 완료될때까지 멈추지 않음
         proBar.setMax(100);
         proBar.setProgress(100);
+        growAnim = AnimationUtils.loadAnimation(this, R.anim.grow);//XML이 아닌 소스코드로 추가
         proBar.setAnimation(growAnim);
-        itemLayout.addView(proBar, params2);//프로그래스바를 params2의 레이아웃에 맞춰서 itemLayout에 입력
 
-        mainLayout.addView(itemLayout, params3);
+        // ProgressBar - Layout Setting
+        LinearLayout.LayoutParams proBarParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        proBarParams.height = 80;
+        proBarParams.width = value * 6;
+        proBarParams.gravity = Gravity.LEFT;
+
+
+        // ADD - ProgressBar
+        itemLayout.addView(proBar, proBarParams);//프로그래스바를 params2의 레이아웃에 맞춰서 itemLayout에 입력
+
+
+        //Add to MainLayout
+        mainLayout.addView(itemLayout, itemParams);
     }
 
     //화면에 보여지기 전에 호출되는 메소드
